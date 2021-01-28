@@ -220,17 +220,19 @@ export const PaginationComp = () => {
             </MenuList>
           </Menu>
         )}
-        <HStack as='form' onSubmit={pageJumperUpdate}>
-          <Text wordBreak='unset'>Go to:</Text>
-          <Input
-            width='50px'
-            value={pageJumper}
-            onChange={(e) => setPageJumper(e.target.value)}
-            size={
-              props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
-            }
-          />
-        </HStack>
+        {props.showQuickJumper && (
+          <HStack as='form' onSubmit={pageJumperUpdate}>
+            <Text wordBreak='unset'>Go to:</Text>
+            <Input
+              width='50px'
+              value={pageJumper}
+              onChange={(e) => setPageJumper(e.target.value)}
+              size={
+                props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
+              }
+            />
+          </HStack>
+        )}
       </Box>
     )
   )
