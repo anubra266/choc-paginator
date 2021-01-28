@@ -1,5 +1,5 @@
 {
-  "name": "choc-paginator",
+  "name": "@choc-ui/paginator",
   "version": "0.1.0",
   "description": "Pagination for Chakra UI",
   "author": "anubra266",
