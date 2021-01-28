@@ -12,18 +12,7 @@ npm install --save choc-paginator
 
 ## Usage
 
-```jsx
-import React, { Component } from 'react'
-
-import MyComponent from 'choc-paginator'
-import 'choc-paginator/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
-```
+[Go Here](https://choc-ui.vercell.app/docs/packages/choc-paginator)
 
 ## License
 
