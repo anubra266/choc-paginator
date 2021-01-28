@@ -352,7 +352,7 @@ var PaginationComp = function PaginationComp() {
       value: opt.toString(),
       key: "size" + oid
     }, opt, " / page");
-  })))), /*#__PURE__*/React.createElement(react.HStack, {
+  })))), props.showQuickJumper && /*#__PURE__*/React.createElement(react.HStack, {
     as: "form",
     onSubmit: pageJumperUpdate
   }, /*#__PURE__*/React.createElement(react.Text, {
