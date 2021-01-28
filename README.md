@@ -2,7 +2,7 @@
 
 > Pagination for Chakra UI
 
-[![NPM](https://img.shields.io/npm/v/choc-paginator.svg)](https://www.npmjs.com/package/choc-paginator) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@choc-ui/paginator.svg)](https://www.npmjs.com/package/@choc-ui/paginator) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
