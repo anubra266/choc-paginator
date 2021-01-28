@@ -105,7 +105,13 @@ export const PaginationComp = () => {
                 onChange={(e) => setSimplePage(e.target.value)}
               />
             </form>
-            <chakra.span mx={1} my='auto' fontSize={props.size}>
+            <chakra.span
+              userSelect='none'
+              opacity={props.disabled ? 0.6 : 1}
+              mx={1}
+              my='auto'
+              fontSize={props.size}
+            >
               / 5
             </chakra.span>
           </React.Fragment>
@@ -221,11 +227,17 @@ export const PaginationComp = () => {
           </Menu>
         )}
         {props.showQuickJumper && (
-          <HStack as='form' onSubmit={pageJumperUpdate}>
+          <HStack
+            as='form'
+            userSelect='none'
+            opacity={props.disabled ? 0.6 : 1}
+            onSubmit={pageJumperUpdate}
+          >
             <Text wordBreak='unset'>Go to:</Text>
             <Input
               width='50px'
               value={pageJumper}
+              isDisabled={props.disabled}
               onChange={(e) => setPageJumper(e.target.value)}
               size={
                 props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
