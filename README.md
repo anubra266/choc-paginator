@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save choc-paginator
+npm install --save @choc-ui/paginator
 ```
 
 ## Usage
