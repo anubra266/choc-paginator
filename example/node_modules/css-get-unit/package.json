@@ -1,0 +1,30 @@
+{
+  "name": "css-get-unit",
+  "description": "Get the unit of a CSS value",
+  "version": "1.0.1",
+  "homepage": "https://github.com/jamen/css-get-unit",
+  "author": "Jamen Marz (https://github.com/jamen)",
+  "repository": "jamen/css-get-unit",
+  "bugs": {
+    "url": "https://github.com/jamen/css-get-unit/issues"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "css",
+    "strip",
+    "unit"
+  ],
+  "devDependencies": {
+    "tape": "^4.6.0"
+  }
+}
