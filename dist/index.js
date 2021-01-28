@@ -34,7 +34,6 @@ var defaultData = {
   pageSize: null,
   pageNeighbours: 0,
   pageSizeOptions: [10, 20, 50, 100],
-  responsive: null,
   paginationProps: null,
   showQuickJumper: false,
   showSizeChanger: null,
@@ -301,6 +300,8 @@ var PaginationComp = function PaginationComp() {
       return setSimplePage(e.target.value);
     }
   })), /*#__PURE__*/React.createElement(react.chakra.span, {
+    userSelect: "none",
+    opacity: props.disabled ? 0.6 : 1,
     mx: 1,
     my: "auto",
     fontSize: props.size
@@ -354,12 +355,15 @@ var PaginationComp = function PaginationComp() {
     }, opt, " / page");
   })))), props.showQuickJumper && /*#__PURE__*/React.createElement(react.HStack, {
     as: "form",
+    userSelect: "none",
+    opacity: props.disabled ? 0.6 : 1,
     onSubmit: pageJumperUpdate
   }, /*#__PURE__*/React.createElement(react.Text, {
     wordBreak: "unset"
   }, "Go to:"), /*#__PURE__*/React.createElement(react.Input, {
     width: "50px",
     value: pageJumper,
+    isDisabled: props.disabled,
     onChange: function onChange(e) {
       return setPageJumper(e.target.value);
     },
