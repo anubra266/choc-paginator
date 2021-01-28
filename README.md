@@ -12,7 +12,7 @@ npm install --save choc-paginator
 
 ## Usage
 
-[Go Here](https://choc-ui.vercell.app/docs/packages/choc-paginator)
+[Go Here](https://choc-ui.vercel.app/docs/packages/choc-paginator)
 
 ## License
 
