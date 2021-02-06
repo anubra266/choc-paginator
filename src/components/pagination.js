@@ -91,10 +91,12 @@ export const PaginationComp = () => {
           mx={1}
           my='auto'
           fontSize={props.size}
-          display={{
-            base: !props.responsive.totalRender && 'none',
-            sm: 'block'
-          }}
+          display={
+            props.responsive && {
+              base: !props.responsive.totalRender && 'none',
+              sm: 'block'
+            }
+          }
         >
           {totalRender}
         </chakra.span>
@@ -150,10 +152,12 @@ export const PaginationComp = () => {
                         ? 'xs'
                         : 'sm'
                     }
-                    display={{
-                      base: !props.responsive.fastBackward && 'none',
-                      sm: 'block'
-                    }}
+                    display={
+                      props.responsive && {
+                        base: !props.responsive.fastBackward && 'none',
+                        sm: 'block'
+                      }
+                    }
                     my='auto'
                   >
                     {!leftRender && '<<'}
@@ -173,10 +177,12 @@ export const PaginationComp = () => {
                         ? 'xs'
                         : 'sm'
                     }
-                    display={{
-                      base: !props.responsive.fastForward && 'none',
-                      sm: 'block'
-                    }}
+                    display={
+                      props.responsive && {
+                        base: !props.responsive.fastForward && 'none',
+                        sm: 'block'
+                      }
+                    }
                     my='auto'
                   >
                     {!rightRender && '>>'}
@@ -218,10 +224,12 @@ export const PaginationComp = () => {
         {props.showSizeChanger && (
           <Menu>
             <MenuButton
-              display={{
-                base: !props.responsive.pageSize && 'none',
-                sm: 'block'
-              }}
+              display={
+                props.responsive && {
+                  base: !props.responsive.pageSize && 'none',
+                  sm: 'block'
+                }
+              }
             >
               <PagButton
                 mx={1}
@@ -257,10 +265,12 @@ export const PaginationComp = () => {
             userSelect='none'
             opacity={props.disabled ? 0.6 : 1}
             onSubmit={pageJumperUpdate}
-            display={{
-              base: !props.responsive.pageJumper && 'none',
-              sm: 'block'
-            }}
+            display={
+              props.responsive && {
+                base: !props.responsive.pageJumper && 'none',
+                sm: 'block'
+              }
+            }
           >
             <Text wordBreak='unset'>Go to:</Text>
             <Input

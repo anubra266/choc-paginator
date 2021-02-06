@@ -54,7 +54,7 @@ var defaultData = {
   baseStyles: null,
   activeStyles: null,
   hoverStyles: null,
-  colorScheme: 'green'
+  colorScheme: 'brand'
 };
 var PaginationContext = React.createContext(_extends({}, defaultData));
 
@@ -313,7 +313,7 @@ var PaginationComp = function PaginationComp() {
     mx: 1,
     my: "auto",
     fontSize: props.size,
-    display: {
+    display: props.responsive && {
       base: !props.responsive.totalRender && 'none',
       sm: 'block'
     }
@@ -346,7 +346,7 @@ var PaginationComp = function PaginationComp() {
       key: index,
       onClick: fastBackward,
       size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
-      display: {
+      display: props.responsive && {
         base: !props.responsive.fastBackward && 'none',
         sm: 'block'
       },
@@ -357,7 +357,7 @@ var PaginationComp = function PaginationComp() {
       key: index,
       onClick: fastForward,
       size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
-      display: {
+      display: props.responsive && {
         base: !props.responsive.fastForward && 'none',
         sm: 'block'
       },
@@ -381,7 +381,7 @@ var PaginationComp = function PaginationComp() {
     onClick: forward,
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
   }, !nextRender && '>')), props.showSizeChanger && /*#__PURE__*/React.createElement(react.Menu, null, /*#__PURE__*/React.createElement(react.MenuButton, {
-    display: {
+    display: props.responsive && {
       base: !props.responsive.pageSize && 'none',
       sm: 'block'
     }
@@ -405,7 +405,7 @@ var PaginationComp = function PaginationComp() {
     userSelect: "none",
     opacity: props.disabled ? 0.6 : 1,
     onSubmit: pageJumperUpdate,
-    display: {
+    display: props.responsive && {
       base: !props.responsive.pageJumper && 'none',
       sm: 'block'
     }

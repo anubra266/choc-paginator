@@ -25,7 +25,7 @@ export const defaultData = {
   baseStyles: null, //*
   activeStyles: null, //*
   hoverStyles: null, //*
-  colorScheme: 'green' //*
+  colorScheme: 'brand' //*
 }
 const PaginationContext = React.createContext({
   ...defaultData

@@ -18,20 +18,8 @@ const Section = (props) => (
   </Stack>
 )
 
-const Next = (props) => {
-  return (
-    <Button {...props} colorScheme='yellow' variant='outline'>
-      {' '}
-      Next{' '}
-    </Button>
-  )
-}
-const Page = (props) => {
-  return <Button mx={1} {...props} colorScheme='yellow' variant='outline' />
-}
 const App = () => {
   const { colorMode, toggleColorMode } = useColorMode()
-  const itemRender = (_, type) => {}
   return (
     <div>
       <Section title=''>
@@ -39,13 +27,20 @@ const App = () => {
           Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
         </Button>
       </Section>
-      <Section title='Basic Pagination'>
+      <Section title='All Pagination'>
+        <Pagination
+          defaultCurrent={2}
+          total={50}
+          paginationProps={{ display: 'flex', mb: 5 }}
+          responsive
+        />
+      </Section>
+      <Section title='All Pagination'>
         <Pagination
           defaultCurrent={1}
-          total={100}
+          total={500}
           onChange={(page) => console.log(page)}
           pageNeighbours={1}
-          itemRender={itemRender}
           showSizeChanger
           size='sm'
           showTotal={(total) => `${total} Items`}
@@ -60,25 +55,10 @@ const App = () => {
             fastBackward: false,
             fastForward: false,
             pageSize: false,
-            pageJumper: false,
+            pageJumper: false
           }}
         />
       </Section>
-
-      {/*<Section title='Custom Styling'>
-        <Pagination
-          defaultCurrent={1}
-          total={50}
-          size='md'
-          activeStyles={{ bg: 'yellow.800', cursor: 'pointer' }}
-          baseStyles={{ bg: 'yellow.600', color: 'white', rounded: 'md' }}
-        />
-        <b>NB:</b>
-        <li>The Styles are Chakra Style Props </li>
-        <li>
-          When hoverStyles prop is not present, activeStyles takes it place.
-        </li>
-  </Section>*/}
     </div>
   )
 }
