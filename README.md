@@ -8,6 +8,8 @@
 
 ```bash
 npm install --save @choc-ui/paginator
+#OR
+yarn add @choc-ui/paginator
 ```
 
 ## Usage
