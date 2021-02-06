@@ -12,6 +12,7 @@ export const defaultData = {
   pageNeighbours: 0, //* indicates the number of additional page numbers to show on each side of the current page.
   pageSizeOptions: [10, 20, 50, 100], //*
   paginationProps: null, //*
+  responsive: false, //*
   showQuickJumper: false, //*
   showSizeChanger: null, //*
   showTotal: () => '', //*

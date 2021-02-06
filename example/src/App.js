@@ -54,6 +54,14 @@ const App = () => {
           activeStyles={{ bg: 'green.800', cursor: 'pointer' }}
           paginationProps={{ display: 'flex' }}
           showQuickJumper
+          responsive={{
+            activePage: true,
+            totalRender: false,
+            fastBackward: false,
+            fastForward: false,
+            pageSize: false,
+            pageJumper: false,
+          }}
         />
       </Section>
 

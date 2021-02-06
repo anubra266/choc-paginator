@@ -33,6 +33,7 @@ var defaultData = {
   pageNeighbours: 0,
   pageSizeOptions: [10, 20, 50, 100],
   paginationProps: null,
+  responsive: false,
   showQuickJumper: false,
   showSizeChanger: null,
   showTotal: function showTotal() {
@@ -126,8 +127,29 @@ var usePaginationStyles = function usePaginationStyles(props) {
   return _extends({}, sizeStyle, baseStyle, hoverStyle, props.active && activeStyle, props.disabled && disabledStyle);
 };
 
+var handleResponsive = function handleResponsive(props) {
+  var type = props.type,
+      active = props.active,
+      responsive = props.responsive;
+  var show = true;
+
+  switch (type) {
+    case 'page':
+      if (!active) show = false;else if (!responsive.activePage) show = false;
+      break;
+  }
+
+  return !show && 'none';
+};
+
 var PagButton = function PagButton(props) {
+  var _React$useContext = React.useContext(PaginationContext),
+      responsive = _React$useContext.responsive;
+
   var paginationStyles = usePaginationStyles(props);
+  var display = responsive && handleResponsive(_extends({}, props, {
+    responsive: responsive
+  }));
   return /*#__PURE__*/React.createElement(Button, _extends({
     onClick: !props.disabled ? props.onClick : null,
     as: props.as,
@@ -137,7 +159,11 @@ var PagButton = function PagButton(props) {
     _focus: {
       boxShadow: 'none'
     },
-    size: props.size
+    size: props.size,
+    display: {
+      base: display,
+      sm: 'block'
+    }
   }), props.children);
 };
 
@@ -284,7 +310,11 @@ var PaginationComp = function PaginationComp() {
   }, /*#__PURE__*/React.createElement(chakra.span, {
     mx: 1,
     my: "auto",
-    fontSize: props.size
+    fontSize: props.size,
+    display: {
+      base: !props.responsive.totalRender && 'none',
+      sm: 'block'
+    }
   }, totalRender), props.simple ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
     onSubmit: simplePageUpdate
   }, /*#__PURE__*/React.createElement(Input, {
@@ -313,30 +343,47 @@ var PaginationComp = function PaginationComp() {
       as: allRender || rightRender,
       key: index,
       onClick: fastBackward,
-      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
+      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
+      display: {
+        base: !props.responsive.fastBackward && 'none',
+        sm: 'block'
+      },
+      my: "auto"
     }, !leftRender && '<<');
     if (page === 'RIGHT') return /*#__PURE__*/React.createElement(Button, {
       as: allRender || rightRender,
       key: index,
       onClick: fastForward,
-      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
+      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
+      display: {
+        base: !props.responsive.fastForward && 'none',
+        sm: 'block'
+      },
+      my: "auto"
     }, !rightRender && '>>');
+    var active = page === props.currentPage;
     return /*#__PURE__*/React.createElement(PagButton, {
       as: allRender || pageRender,
       disabled: props.disabled,
-      active: page === props.currentPage,
+      active: active,
       key: "page-" + index,
       onClick: function onClick() {
         return changePage(page);
       },
-      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
+      size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
+      type: "page"
     }, page);
   }), /*#__PURE__*/React.createElement(PagButton, {
     as: allRender || nextRender,
     disabled: props.currentPage === totalPages || props.disabled,
     onClick: forward,
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
-  }, !nextRender && '>')), props.showSizeChanger && /*#__PURE__*/React.createElement(Menu, null, /*#__PURE__*/React.createElement(MenuButton, null, /*#__PURE__*/React.createElement(PagButton, {
+  }, !nextRender && '>')), props.showSizeChanger && /*#__PURE__*/React.createElement(Menu, null, /*#__PURE__*/React.createElement(MenuButton, {
+    display: {
+      base: !props.responsive.pageSize && 'none',
+      sm: 'block'
+    }
+  }, /*#__PURE__*/React.createElement(PagButton, {
     mx: 1,
     as: allRender || jumperRender || Button,
     disabled: props.disabled,
@@ -355,7 +402,11 @@ var PaginationComp = function PaginationComp() {
     as: "form",
     userSelect: "none",
     opacity: props.disabled ? 0.6 : 1,
-    onSubmit: pageJumperUpdate
+    onSubmit: pageJumperUpdate,
+    display: {
+      base: !props.responsive.pageJumper && 'none',
+      sm: 'block'
+    }
   }, /*#__PURE__*/React.createElement(Text, {
     wordBreak: "unset"
   }, "Go to:"), /*#__PURE__*/React.createElement(Input, {
