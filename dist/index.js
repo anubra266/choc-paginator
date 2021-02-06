@@ -407,7 +407,7 @@ var PaginationComp = function PaginationComp() {
     onSubmit: pageJumperUpdate,
     display: props.responsive && {
       base: !props.responsive.pageJumper && 'none',
-      sm: 'block'
+      sm: 'flex'
     }
   }, /*#__PURE__*/React.createElement(react.Text, {
     wordBreak: "unset"

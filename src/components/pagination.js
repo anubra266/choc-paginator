@@ -268,7 +268,7 @@ export const PaginationComp = () => {
             display={
               props.responsive && {
                 base: !props.responsive.pageJumper && 'none',
-                sm: 'block'
+                sm: 'flex'
               }
             }
           >

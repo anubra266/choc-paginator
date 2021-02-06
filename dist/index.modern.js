@@ -1,14 +1,34 @@
 import React from 'react';
 import { useColorModeValue, Button, Box, chakra, Input, Menu, MenuButton, MenuList, MenuOptionGroup, MenuItemOption, HStack, Text } from '@chakra-ui/react';
 
-const defaultData = {
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+var defaultData = {
   current: null,
   defaultCurrent: 1,
   defaultPage: 1,
   defaultPageSize: 10,
   disabled: false,
   hideOnSinglePage: false,
-  itemRender: () => null,
+  itemRender: function itemRender() {
+    return null;
+  },
   pageSize: null,
   pageNeighbours: 0,
   pageSizeOptions: [10, 20, 50, 100],
@@ -16,11 +36,17 @@ const defaultData = {
   responsive: false,
   showQuickJumper: false,
   showSizeChanger: null,
-  showTotal: () => '',
+  showTotal: function showTotal() {
+    return '';
+  },
   simple: null,
   total: 0,
-  onChange: () => '',
-  onShowSizeChange: () => '',
+  onChange: function onChange() {
+    return '';
+  },
+  onShowSizeChange: function onShowSizeChange() {
+    return '';
+  },
   size: 'md',
   rounded: 'md',
   baseStyles: null,
@@ -28,34 +54,33 @@ const defaultData = {
   hoverStyles: null,
   colorScheme: 'brand'
 };
-const PaginationContext = React.createContext({ ...defaultData
-});
+var PaginationContext = React.createContext(_extends({}, defaultData));
 
-const usePaginationStyles = props => {
-  const {
-    colorScheme,
-    rounded,
-    size,
-    baseStyles,
-    activeStyles,
-    hoverStyles
-  } = React.useContext(PaginationContext);
-  const activeStyle = activeStyles || {
-    bg: useColorModeValue(`${colorScheme}.600`, `${colorScheme}.500`),
+var usePaginationStyles = function usePaginationStyles(props) {
+  var _React$useContext = React.useContext(PaginationContext),
+      colorScheme = _React$useContext.colorScheme,
+      rounded = _React$useContext.rounded,
+      size = _React$useContext.size,
+      baseStyles = _React$useContext.baseStyles,
+      activeStyles = _React$useContext.activeStyles,
+      hoverStyles = _React$useContext.hoverStyles;
+
+  var activeStyle = activeStyles || {
+    bg: useColorModeValue(colorScheme + ".600", colorScheme + ".500"),
     color: useColorModeValue('white', 'gray.200'),
     cursor: 'pointer'
   };
-  const hoverStyle = !props.disabled && {
+  var hoverStyle = !props.disabled && {
     _hover: hoverStyles || activeStyle
   };
-  const baseStyle = baseStyles || {
+  var baseStyle = baseStyles || {
     rounded: rounded,
     bg: useColorModeValue('white', 'gray.800'),
     color: useColorModeValue('gray.700', 'gray.200'),
     userSelect: 'none'
   };
 
-  const getSizeStyle = size => {
+  var getSizeStyle = function getSizeStyle(size) {
     var styles;
 
     switch (size) {
@@ -94,26 +119,19 @@ const usePaginationStyles = props => {
     return styles;
   };
 
-  const sizeStyle = getSizeStyle(size);
-  const disabledStyle = {
+  var sizeStyle = getSizeStyle(size);
+  var disabledStyle = {
     opacity: 0.6,
     cursor: 'not-allowed'
   };
-  return { ...sizeStyle,
-    ...baseStyle,
-    ...hoverStyle,
-    ...(props.active && activeStyle),
-    ...(props.disabled && disabledStyle)
-  };
+  return _extends({}, sizeStyle, baseStyle, hoverStyle, props.active && activeStyle, props.disabled && disabledStyle);
 };
 
-const handleResponsive = props => {
-  const {
-    type,
-    active,
-    responsive
-  } = props;
-  let show = true;
+var handleResponsive = function handleResponsive(props) {
+  var type = props.type,
+      active = props.active,
+      responsive = props.responsive;
+  var show = true;
 
   switch (type) {
     case 'page':
@@ -124,15 +142,15 @@ const handleResponsive = props => {
   return !show && 'none';
 };
 
-const PagButton = props => {
-  const {
-    responsive
-  } = React.useContext(PaginationContext);
-  const paginationStyles = usePaginationStyles(props);
-  const display = responsive && handleResponsive({ ...props,
-    responsive
-  });
-  return /*#__PURE__*/React.createElement(Button, Object.assign({
+var PagButton = function PagButton(props) {
+  var _React$useContext = React.useContext(PaginationContext),
+      responsive = _React$useContext.responsive;
+
+  var paginationStyles = usePaginationStyles(props);
+  var display = responsive && handleResponsive(_extends({}, props, {
+    responsive: responsive
+  }));
+  return /*#__PURE__*/React.createElement(Button, _extends({
     onClick: !props.disabled ? props.onClick : null,
     as: props.as,
     mx: 1,
@@ -149,12 +167,16 @@ const PagButton = props => {
   }), props.children);
 };
 
-const LEFT_PAGE = 'LEFT';
-const RIGHT_PAGE = 'RIGHT';
+var LEFT_PAGE = 'LEFT';
+var RIGHT_PAGE = 'RIGHT';
 
-const range = (from, to, step = 1) => {
-  let i = from;
-  const range = [];
+var range = function range(from, to, step) {
+  if (step === void 0) {
+    step = 1;
+  }
+
+  var i = from;
+  var range = [];
 
   while (i <= to) {
     range.push(i);
@@ -164,98 +186,104 @@ const range = (from, to, step = 1) => {
   return range;
 };
 
-const fetchPageNumbers = () => {
-  const props = React.useContext(PaginationContext);
-  const totalPages = Math.ceil(props.total / props.pageSize);
-  const currentPage = props.currentPage;
-  const pageNeighbours = props.pageNeighbours;
-  const totalNumbers = pageNeighbours * 2 + 3;
-  const totalBlocks = totalNumbers + 2;
+var fetchPageNumbers = function fetchPageNumbers() {
+  var props = React.useContext(PaginationContext);
+  var totalPages = Math.ceil(props.total / props.pageSize);
+  var currentPage = props.currentPage;
+  var pageNeighbours = props.pageNeighbours;
+  var totalNumbers = pageNeighbours * 2 + 3;
+  var totalBlocks = totalNumbers + 2;
 
   if (totalPages > totalBlocks) {
-    const startPage = Math.max(2, currentPage - pageNeighbours);
-    const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
-    let pages = range(startPage, endPage);
-    const hasLeftSpill = startPage > 2;
-    const hasRightSpill = totalPages - endPage > 1;
-    const spillOffset = totalNumbers - (pages.length + 1);
+    var startPage = Math.max(2, currentPage - pageNeighbours);
+    var endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
+    var pages = range(startPage, endPage);
+    var hasLeftSpill = startPage > 2;
+    var hasRightSpill = totalPages - endPage > 1;
+    var spillOffset = totalNumbers - (pages.length + 1);
 
     switch (true) {
       case hasLeftSpill && !hasRightSpill:
         {
-          const extraPages = range(startPage - spillOffset, startPage - 1);
-          pages = [LEFT_PAGE, ...extraPages, ...pages];
+          var extraPages = range(startPage - spillOffset, startPage - 1);
+          pages = [LEFT_PAGE].concat(extraPages, pages);
           break;
         }
 
       case !hasLeftSpill && hasRightSpill:
         {
-          const extraPages = range(endPage + 1, endPage + spillOffset);
-          pages = [...pages, ...extraPages, RIGHT_PAGE];
+          var _extraPages = range(endPage + 1, endPage + spillOffset);
+
+          pages = [].concat(pages, _extraPages, [RIGHT_PAGE]);
           break;
         }
 
       case hasLeftSpill && hasRightSpill:
       default:
         {
-          pages = [LEFT_PAGE, ...pages, RIGHT_PAGE];
+          pages = [LEFT_PAGE].concat(pages, [RIGHT_PAGE]);
           break;
         }
     }
 
-    return [1, ...pages, totalPages];
+    return [1].concat(pages, [totalPages]);
   }
 
   return range(1, totalPages);
 };
 
-const PaginationComp = () => {
-  const props = React.useContext(PaginationContext);
-  const totalPages = Math.ceil(props.total / props.pageSize);
-  const prevRender = props.itemRender(props.currentPage, 'prev');
-  const nextRender = props.itemRender(props.currentPage, 'next');
-  const leftRender = props.itemRender(props.currentPage, 'backward');
-  const rightRender = props.itemRender(props.currentPage, 'forward');
-  const jumperRender = props.itemRender(props.currentPage, 'jumper');
-  const pageRender = props.itemRender(props.currentPage, 'page');
-  const allRender = props.itemRender(props.currentPage, 'all');
-  const totalRender = props.showTotal(props.total);
+var PaginationComp = function PaginationComp() {
+  var props = React.useContext(PaginationContext);
+  var totalPages = Math.ceil(props.total / props.pageSize);
+  var prevRender = props.itemRender(props.currentPage, 'prev');
+  var nextRender = props.itemRender(props.currentPage, 'next');
+  var leftRender = props.itemRender(props.currentPage, 'backward');
+  var rightRender = props.itemRender(props.currentPage, 'forward');
+  var jumperRender = props.itemRender(props.currentPage, 'jumper');
+  var pageRender = props.itemRender(props.currentPage, 'page');
+  var allRender = props.itemRender(props.currentPage, 'all');
+  var totalRender = props.showTotal(props.total);
   if (!totalPages || props.hideOnSinglePage && totalPages === 1) return null;
-  const pages = fetchPageNumbers();
+  var pages = fetchPageNumbers();
 
-  const changePage = page => {
-    const currentPage = Math.max(0, Math.min(page, totalPages));
+  var changePage = function changePage(page) {
+    var currentPage = Math.max(0, Math.min(page, totalPages));
     props.setCurrentPage(currentPage);
     props.onChange(currentPage, totalPages, props.pageSize, props.total);
   };
 
-  const fastBackward = () => {
-    const page = props.currentPage - props.pageNeighbours * 2 - 1;
+  var fastBackward = function fastBackward() {
+    var page = props.currentPage - props.pageNeighbours * 2 - 1;
     changePage(page);
   };
 
-  const fastForward = () => {
-    const page = props.currentPage + props.pageNeighbours * 2 + 1;
+  var fastForward = function fastForward() {
+    var page = props.currentPage + props.pageNeighbours * 2 + 1;
     changePage(page);
   };
 
-  const backward = () => {
+  var backward = function backward() {
     changePage(props.currentPage - 1);
   };
 
-  const forward = () => {
+  var forward = function forward() {
     changePage(props.currentPage + 1);
   };
 
-  const changePageSize = size => {
+  var changePageSize = function changePageSize(size) {
     props.setPageSize(size);
     props.onShowSizeChange(props.currentPage, size);
   };
 
-  const [simplePage, setSimplePage] = React.useState(props.currentPage);
-  const [pageJumper, setPageJumper] = React.useState('');
+  var _React$useState = React.useState(props.currentPage),
+      simplePage = _React$useState[0],
+      setSimplePage = _React$useState[1];
 
-  const simplePageUpdate = e => {
+  var _React$useState2 = React.useState(''),
+      pageJumper = _React$useState2[0],
+      setPageJumper = _React$useState2[1];
+
+  var simplePageUpdate = function simplePageUpdate(e) {
     e.preventDefault();
 
     if (isNaN(simplePage)) {
@@ -265,7 +293,7 @@ const PaginationComp = () => {
     }
   };
 
-  const pageJumperUpdate = e => {
+  var pageJumperUpdate = function pageJumperUpdate(e) {
     e.preventDefault();
 
     if (isNaN(pageJumper)) {
@@ -296,7 +324,9 @@ const PaginationComp = () => {
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
     w: props.size === 'lg' ? 50 : 10,
     value: simplePage,
-    onChange: e => setSimplePage(e.target.value)
+    onChange: function onChange(e) {
+      return setSimplePage(e.target.value);
+    }
   })), /*#__PURE__*/React.createElement(chakra.span, {
     userSelect: "none",
     opacity: props.disabled ? 0.6 : 1,
@@ -308,7 +338,7 @@ const PaginationComp = () => {
     disabled: props.currentPage === 1 || props.disabled,
     onClick: backward,
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
-  }, !prevRender && '<'), pages.map((page, index) => {
+  }, !prevRender && '<'), pages.map(function (page, index) {
     if (page === 'LEFT') return /*#__PURE__*/React.createElement(Button, {
       as: allRender || rightRender,
       key: index,
@@ -331,13 +361,15 @@ const PaginationComp = () => {
       },
       my: "auto"
     }, !rightRender && '>>');
-    const active = page === props.currentPage;
+    var active = page === props.currentPage;
     return /*#__PURE__*/React.createElement(PagButton, {
       as: allRender || pageRender,
       disabled: props.disabled,
       active: active,
-      key: `page-${index}`,
-      onClick: () => changePage(page),
+      key: "page-" + index,
+      onClick: function onClick() {
+        return changePage(page);
+      },
       size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm',
       type: "page"
     }, page);
@@ -358,18 +390,22 @@ const PaginationComp = () => {
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
   }, props.pageSize, " / page")), /*#__PURE__*/React.createElement(MenuList, null, /*#__PURE__*/React.createElement(MenuOptionGroup, {
     onChange: changePageSize
-  }, props.pageSizeOptions.filter(opt => opt !== props.pageSize).map((opt, oid) => /*#__PURE__*/React.createElement(MenuItemOption, {
-    fontSize: props.size,
-    value: opt.toString(),
-    key: `size${oid}`
-  }, opt, " / page"))))), props.showQuickJumper && /*#__PURE__*/React.createElement(HStack, {
+  }, props.pageSizeOptions.filter(function (opt) {
+    return opt !== props.pageSize;
+  }).map(function (opt, oid) {
+    return /*#__PURE__*/React.createElement(MenuItemOption, {
+      fontSize: props.size,
+      value: opt.toString(),
+      key: "size" + oid
+    }, opt, " / page");
+  })))), props.showQuickJumper && /*#__PURE__*/React.createElement(HStack, {
     as: "form",
     userSelect: "none",
     opacity: props.disabled ? 0.6 : 1,
     onSubmit: pageJumperUpdate,
     display: props.responsive && {
       base: !props.responsive.pageJumper && 'none',
-      sm: 'block'
+      sm: 'flex'
     }
   }, /*#__PURE__*/React.createElement(Text, {
     wordBreak: "unset"
@@ -377,40 +413,53 @@ const PaginationComp = () => {
     width: "50px",
     value: pageJumper,
     isDisabled: props.disabled,
-    onChange: e => setPageJumper(e.target.value),
+    onChange: function onChange(e) {
+      return setPageJumper(e.target.value);
+    },
     size: props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
   })));
 };
 
-const methods = ['itemRender', 'setCurrentPage'];
-const nonMethods = Object.keys(defaultData).filter(k => !methods.includes(k));
-const filterProps = props => {
-  const validProps = nonMethods.reduce((acc, nxt) => {
+var methods = ['itemRender', 'setCurrentPage'];
+var nonMethods = Object.keys(defaultData).filter(function (k) {
+  return !methods.includes(k);
+});
+var filterProps = function filterProps(props) {
+  var validProps = nonMethods.reduce(function (acc, nxt) {
     acc.push(props[nxt]);
     return acc;
   }, []);
-  return React.useMemo(() => props, validProps);
+  return React.useMemo(function () {
+    return props;
+  }, validProps);
 };
 
-const Pagination = props => {
-  const defaultProps = React.useContext(PaginationContext);
-  const allProps = { ...defaultProps,
-    ...props
-  };
-  const [currentPage, setCurrentPage] = React.useState(allProps.current || allProps.defaultCurrent);
-  React.useEffect(() => {
+var Pagination = function Pagination(props) {
+  var defaultProps = React.useContext(PaginationContext);
+
+  var allProps = _extends({}, defaultProps, props);
+
+  var _React$useState = React.useState(allProps.current || allProps.defaultCurrent),
+      currentPage = _React$useState[0],
+      setCurrentPage = _React$useState[1];
+
+  React.useEffect(function () {
     props.current && setCurrentPage(props.current);
   }, [props.current]);
-  const [pageSize, setPageSize] = React.useState(allProps.pageSize || allProps.defaultPageSize);
-  const contextvalue = { ...allProps
-  };
-  const value = React.useMemo(() => {
-    return { ...contextvalue,
-      currentPage,
-      setCurrentPage,
-      pageSize,
-      setPageSize
-    };
+
+  var _React$useState2 = React.useState(allProps.pageSize || allProps.defaultPageSize),
+      pageSize = _React$useState2[0],
+      setPageSize = _React$useState2[1];
+
+  var contextvalue = _extends({}, allProps);
+
+  var value = React.useMemo(function () {
+    return _extends({}, contextvalue, {
+      currentPage: currentPage,
+      setCurrentPage: setCurrentPage,
+      pageSize: pageSize,
+      setPageSize: setPageSize
+    });
   }, [filterProps(contextvalue), currentPage, pageSize]);
   return /*#__PURE__*/React.createElement(PaginationContext.Provider, {
     value: value
