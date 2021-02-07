@@ -14,7 +14,7 @@ yarn add @choc-ui/paginator
 
 ## Usage
 
-[Go Here](https://choc-ui.vercel.app/docs/packages/pagination)
+[Go Here](https://choc-ui.tech/docs/packages/pagination)
 
 ## License
 
