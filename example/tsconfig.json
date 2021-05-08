@@ -14,5 +14,6 @@
     "sourceMap": true,
     "lib": ["es2015", "es2016", "dom"],
     "types": ["node"]
-  }
+  },
+  "homepage": "https://anubra266.github.io/choc-paginator/"
 }
