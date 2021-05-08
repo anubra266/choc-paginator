@@ -1,5 +1,5 @@
 {
-  "version": "3.0.1",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,7 +34,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "choc-paginator",
+  "name": "@choc-ui/paginator",
   "author": "anubra266",
   "module": "dist/choc-paginator.esm.js",
   "size-limit": [
