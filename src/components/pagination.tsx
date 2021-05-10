@@ -3,7 +3,6 @@ import { PagButton } from './pbutton';
 import {
   Menu,
   MenuButton,
-  Button,
   MenuList,
   Box,
   MenuOptionGroup,
@@ -24,9 +23,8 @@ export const PaginationComp = () => {
   const nextRender = props.itemRender(props.currentPage, 'next');
   const leftRender = props.itemRender(props.currentPage, 'backward');
   const rightRender = props.itemRender(props.currentPage, 'forward');
-  const jumperRender = props.itemRender(props.currentPage, 'jumper');
+  const pageSizeRender = props.itemRender(props.pageSize, 'pageSize');
   const pageRender = props.itemRender(props.currentPage, 'page');
-  const allRender = props.itemRender(props.currentPage, 'all');
   const totalRender = props.showTotal(props.total);
 
   if (!totalPages || (props.hideOnSinglePage && totalPages === 1)) return null;
@@ -138,7 +136,7 @@ export const PaginationComp = () => {
       ) : (
         <React.Fragment>
           <PagButton
-            as={allRender || prevRender}
+            as={prevRender}
             disabled={props.currentPage === 1 || props.disabled}
             onClick={backward}
             size={
@@ -151,8 +149,8 @@ export const PaginationComp = () => {
           {pages.map((page, index) => {
             if (page === 'LEFT')
               return (
-                <Button
-                  as={allRender || rightRender}
+                <PagButton
+                  as={rightRender}
                   key={index}
                   onClick={fastBackward}
                   size={
@@ -166,13 +164,13 @@ export const PaginationComp = () => {
                   my="auto"
                 >
                   {!leftRender && '<<'}
-                </Button>
+                </PagButton>
               );
 
             if (page === 'RIGHT')
               return (
-                <Button
-                  as={allRender || rightRender}
+                <PagButton
+                  as={rightRender}
                   key={index}
                   onClick={fastForward}
                   size={
@@ -186,12 +184,12 @@ export const PaginationComp = () => {
                   my="auto"
                 >
                   {!rightRender && '>>'}
-                </Button>
+                </PagButton>
               );
             const active = page === props.currentPage;
             return (
               <PagButton
-                as={allRender || pageRender}
+                as={pageRender}
                 disabled={props.disabled}
                 active={active}
                 key={`page-${index}`}
@@ -206,7 +204,7 @@ export const PaginationComp = () => {
             );
           })}
           <PagButton
-            as={allRender || nextRender}
+            as={nextRender}
             disabled={props.currentPage === totalPages || props.disabled}
             onClick={forward}
             size={
@@ -219,18 +217,16 @@ export const PaginationComp = () => {
       )}
       {props.showSizeChanger && (
         <Menu>
-          <MenuButton>
-            <PagButton
-              mx={1}
-              as={allRender || jumperRender}
-              disabled={props.disabled}
-              size={
-                props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
-              }
-            >
-              {props.pageSize} / page
-            </PagButton>
-          </MenuButton>
+          <PagMenuButton
+            mx={1}
+            as={pageSizeRender}
+            disabled={props.disabled}
+            size={
+              props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
+            }
+          >
+            {props.pageSize} / page
+          </PagMenuButton>
           <MenuList>
             <MenuOptionGroup onChange={changePageSize}>
               {props.pageSizeOptions
@@ -271,3 +267,5 @@ export const PaginationComp = () => {
     </Box>
   ) : null;
 };
+
+const PagMenuButton = (props: any) => <MenuButton as={PagButton} {...props} />;

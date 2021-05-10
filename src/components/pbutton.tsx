@@ -18,8 +18,9 @@ const handleResponsive = (props: any) => {
   }
   return !show && 'none';
 };
+
 export const PagButton = (props: any) => {
-  const { responsive } = React.useContext(PagContext);
+  const { responsive, focusRing } = React.useContext(PagContext);
   const paginationStyles: any = usePaginationStyles(props);
   const display: any = {
     display: [
@@ -29,6 +30,13 @@ export const PagButton = (props: any) => {
   };
   const onClick: any = !props.disabled ? props.onClick : null;
 
+  const focusRingStyles = {
+    boxShadow: focusRing
+      ? typeof focusRing === 'string'
+        ? `0 0 0 3px ${focusRing}`
+        : `0 0 0 3px rgba(66, 153, 225, 0.6)`
+      : 'none',
+  };
   return (
     <Button
       onClick={onClick}
@@ -36,8 +44,7 @@ export const PagButton = (props: any) => {
       mx={1}
       my="auto"
       {...paginationStyles}
-      _focus={{ boxShadow: 'none' }}
-      // _focus={{ boxShadow: '0 0 0 3px red' }}
+      _focus={focusRingStyles}
       size={props.size}
       {...display}
     >

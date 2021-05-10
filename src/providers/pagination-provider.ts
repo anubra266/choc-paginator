@@ -79,6 +79,7 @@ export interface Pagination {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<Pagination['currentPage']>>;
   setPageSize: Dispatch<SetStateAction<Pagination['pageSize']>>;
+  focusRing: boolean | string;
 }
 
 const PaginationContext = React.createContext({} as Pagination);

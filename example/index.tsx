@@ -34,25 +34,53 @@ const theme = extendTheme({ colors, config });
 
 const App = () => {
   const toast = useToast();
-  const Prev = (props: any) => <Button {...props}>Prev </Button>;
-  const Next = (props: any) => <Button {...props}> Next </Button>;
-  const Page = (props: any) => <Button {...props}> P {props.children} </Button>;
+  const Prev = React.forwardRef((props: any, ref) => (
+    <Button ref={ref} {...props}>
+      Prev
+    </Button>
+  ));
+  const Next = React.forwardRef((props: any, ref) => (
+    <Button ref={ref} {...props}>
+      Next
+    </Button>
+  ));
+  const Page = React.forwardRef((props: any, ref) => (
+    <Button ref={ref} {...props}>
+      P{props.children}
+    </Button>
+  ));
+  const All = React.forwardRef((props: any, ref) => (
+    <Button ref={ref} {...props}>
+      {props.children}
+    </Button>
+  ));
 
-  const itemRender = (_: any, type: string) => {
+  const itemRender = (p: any, type: string) => {
     if (type === 'prev') {
-      return Prev;
+      return React.forwardRef((props: any, ref) => (
+        <Button ref={ref} {...props}>
+          Prev {p}
+        </Button>
+      ));;
     }
     if (type === 'next') {
-      return Next;
+      return React.forwardRef((props: any, ref) => (
+        <Button ref={ref} {...props}>
+          Next {p}
+        </Button>
+      ));;
     }
     if (type === 'page') {
       return Page;
+    }
+    if (type === 'pageSize') {
+      return All;
     }
   };
 
   return (
     <VStack py="5" spacing="5">
-      <Pagination
+      {/* <Pagination
         defaultCurrent={1}
         total={50}
         paginationProps={{ display: 'flex' }}
@@ -73,13 +101,15 @@ const App = () => {
         total={500}
         paginationProps={{ display: 'flex' }}
         pageNeighbours={2}
-      />
+      /> */}
 
       <Pagination
         defaultCurrent={5}
         total={500}
         paginationProps={{ display: 'flex' }}
         showSizeChanger
+        focusRing="green"
+        itemRender={itemRender}
       />
 
       <Pagination
@@ -89,7 +119,7 @@ const App = () => {
         pageNeighbours={1}
         showQuickJumper
       />
-
+      {/* 
       {['xs', 'sm', 'md', 'lg'].map((size, key) => (
         <Pagination
           key={key}
@@ -169,7 +199,7 @@ const App = () => {
         showSizeChanger
         showQuickJumper
         responsive={{ activePage: true }}
-      />
+      />*/}
     </VStack>
   );
 };
