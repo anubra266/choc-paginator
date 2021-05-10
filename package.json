@@ -36,14 +36,14 @@
   },
   "name": "@choc-ui/paginator",
   "author": "anubra266",
-  "module": "dist/choc-paginator.esm.js",
+  "module": "dist/paginator.esm.js",
   "size-limit": [
     {
-      "path": "dist/choc-paginator.cjs.production.min.js",
+      "path": "dist/paginator.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/choc-paginator.esm.js",
+      "path": "dist/paginator.esm.js",
       "limit": "10 KB"
     }
   ],

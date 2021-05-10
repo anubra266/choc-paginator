@@ -83,10 +83,20 @@ export const PaginationComp = () => {
     }
   };
 
-  const responsiveDisplay = (type: Responsives) =>
-    props.responsive && {
-      display: [props.responsive[type] ? 'block' : 'none', 'block'],
-    };
+  const responsiveDisplay = (type: Responsives) => {
+    if (props.responsive) {
+      if (
+        typeof props.responsive !== 'boolean' &&
+        Object.keys(props.responsive).includes(type)
+      ) {
+        return {
+          display: 'block',
+        };
+      }
+      return { display: ['none', 'block'] };
+    }
+    return {};
+  };
 
   return props.total > 0 ? (
     <Box
@@ -212,7 +222,7 @@ export const PaginationComp = () => {
           <MenuButton>
             <PagButton
               mx={1}
-              as={allRender || jumperRender || Button}
+              as={allRender || jumperRender}
               disabled={props.disabled}
               size={
                 props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'

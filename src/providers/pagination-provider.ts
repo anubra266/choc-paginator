@@ -54,9 +54,9 @@ export interface Pagination {
   pageNeighbours: number; //* indicates the number of additional page numbers to show on each side of the current page.
   pageSizeOptions: number[]; //*
   paginationProps: BoxProps | null; //*
-  responsive: Record<Responsives, boolean> | null;
+  responsive: Partial<Record<Responsives, boolean>> | boolean;
   showQuickJumper: boolean; //*
-  showSizeChanger: null; //*
+  showSizeChanger: boolean | null; //*
   showTotal: (total?: number) => ReactElement | any;
   simple: boolean | null; //*
   total: number; //*
