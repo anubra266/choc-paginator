@@ -150,7 +150,7 @@ export const PaginationComp = () => {
             if (page === 'LEFT')
               return (
                 <PagButton
-                  as={rightRender}
+                  as={leftRender}
                   key={index}
                   onClick={fastBackward}
                   size={

@@ -70,6 +70,20 @@ const App = () => {
         </Button>
       ));;
     }
+    if (type === 'backward') {
+      return React.forwardRef((props: any, ref) => (
+        <Button ref={ref} {...props}>
+          Backward {p}
+        </Button>
+      ));
+    }
+    if (type === 'forward') {
+      return React.forwardRef((props: any, ref) => (
+        <Button ref={ref} {...props}>
+          Forward {p}
+        </Button>
+      ));
+    }
     if (type === 'page') {
       return Page;
     }
