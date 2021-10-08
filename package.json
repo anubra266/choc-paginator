@@ -1,5 +1,5 @@
 {
-  "version": "3.2.0",
+  "version": "3.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -36,6 +36,10 @@
   },
   "name": "@choc-ui/paginator",
   "author": "anubra266",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anubra266/choc-paginator.git"
+  },
   "module": "dist/paginator.esm.js",
   "size-limit": [
     {
