@@ -44,6 +44,8 @@ export const PagButton = (props: any) => {
       mx={1}
       my="auto"
       {...paginationStyles}
+      _first={{ ml: 0 }}
+      _last={{ mr: 0 }}
       _focus={focusRingStyles}
       size={props.size}
       {...display}
