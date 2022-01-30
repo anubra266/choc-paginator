@@ -16,7 +16,7 @@ export const defaultData = {
   responsive: false, //*
   showQuickJumper: false, //*
   showSizeChanger: null, //*
-  showTotal: () => '', //*
+  showTotal: () => null, //*
   simple: null, //*
   total: 0, //*
   onChange: () => '', //*

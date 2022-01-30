@@ -100,14 +100,16 @@ export const PaginationComp = () => {
     <Box
       {...(props.paginationProps || { w: 'full', justifyContent: 'center' })}
     >
-      <chakra.span
-        mx={1}
-        my="auto"
-        fontSize={props.size}
-        {...responsiveDisplay('totalRender')}
-      >
-        {totalRender}
-      </chakra.span>
+      {totalRender !== null && (
+        <chakra.span
+          mx={1}
+          my="auto"
+          fontSize={props.size}
+          {...responsiveDisplay('totalRender')}
+        >
+          {totalRender}
+        </chakra.span>
+      )}
       {props.simple ? (
         <React.Fragment>
           <form onSubmit={simplePageUpdate}>
@@ -218,7 +220,7 @@ export const PaginationComp = () => {
       {props.showSizeChanger && (
         <Menu>
           <PagMenuButton
-            mx={1}
+            ml={1}
             as={pageSizeRender}
             disabled={props.disabled}
             size={
@@ -249,6 +251,7 @@ export const PaginationComp = () => {
           as="form"
           userSelect="none"
           opacity={props.disabled ? 0.6 : 1}
+          ml={2}
           onSubmit={pageJumperUpdate}
           {...responsiveDisplay('pageJumper')}
         >
