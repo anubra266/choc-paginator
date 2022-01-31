@@ -58,30 +58,30 @@ const App = () => {
   const itemRender = (p: any, type: string) => {
     if (type === 'prev') {
       return React.forwardRef((props: any, ref) => (
-        <Button ref={ref} {...props}>
+        <a ref={ref} {...props}>
           Prev {p}
-        </Button>
+        </a>
       ));;
     }
     if (type === 'next') {
       return React.forwardRef((props: any, ref) => (
-        <Button ref={ref} {...props}>
+        <a ref={ref} {...props}>
           Next {p}
-        </Button>
+        </a>
       ));;
     }
     if (type === 'backward') {
       return React.forwardRef((props: any, ref) => (
-        <Button ref={ref} {...props}>
+        <a ref={ref} {...props}>
           Backward {p}
-        </Button>
+        </a>
       ));
     }
     if (type === 'forward') {
       return React.forwardRef((props: any, ref) => (
-        <Button ref={ref} {...props}>
+        <a ref={ref} {...props}>
           Forward {p}
-        </Button>
+        </a>
       ));
     }
     if (type === 'page') {
@@ -107,7 +107,7 @@ const App = () => {
             isClosable: true,
           })
         }
-        
+
       />
 
       <Pagination
@@ -124,6 +124,7 @@ const App = () => {
         showSizeChanger
         focusRing="green"
         itemRender={itemRender}
+        basePath="https://carplanner.com/?pagina="
       />
 
       <Pagination
@@ -133,7 +134,7 @@ const App = () => {
         pageNeighbours={1}
         showQuickJumper
       />
-      {/* 
+      {/*
       {['xs', 'sm', 'md', 'lg'].map((size, key) => (
         <Pagination
           key={key}

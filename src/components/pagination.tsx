@@ -96,6 +96,16 @@ export const PaginationComp = () => {
     return {};
   };
 
+  const hrefLink = (page: number) => {
+    if (props.basePath && page > 0 && page !== props.currentPage) {
+      return {
+        href: `${props.basePath}${page}`
+      }
+    }
+
+    return {}
+  }
+
   return props.total > 0 ? (
     <Box
       {...(props.paginationProps || { w: 'full', justifyContent: 'center' })}
@@ -141,6 +151,7 @@ export const PaginationComp = () => {
             as={prevRender}
             disabled={props.currentPage === 1 || props.disabled}
             onClick={backward}
+            {...hrefLink(props.currentPage - 1)}
             size={
               props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
             }
@@ -155,6 +166,7 @@ export const PaginationComp = () => {
                   as={leftRender}
                   key={index}
                   onClick={fastBackward}
+                  {...hrefLink(props.currentPage - props.pageNeighbours * 2 - 1)}
                   size={
                     props.size === 'lg'
                       ? 'md'
@@ -175,6 +187,7 @@ export const PaginationComp = () => {
                   as={rightRender}
                   key={index}
                   onClick={fastForward}
+                  {...hrefLink(props.currentPage + props.pageNeighbours * 2 + 1)}
                   size={
                     props.size === 'lg'
                       ? 'md'
@@ -196,6 +209,7 @@ export const PaginationComp = () => {
                 active={active}
                 key={`page-${index}`}
                 onClick={() => changePage(page)}
+                {...hrefLink(page)}
                 size={
                   props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
                 }
@@ -209,6 +223,7 @@ export const PaginationComp = () => {
             as={nextRender}
             disabled={props.currentPage === totalPages || props.disabled}
             onClick={forward}
+            {...hrefLink(props.currentPage + 1)}
             size={
               props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
             }

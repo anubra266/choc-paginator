@@ -29,6 +29,7 @@ export const PagButton = (props: any) => {
     ],
   };
   const onClick: any = !props.disabled ? props.onClick : null;
+  const href: any = props.href ? {href: props.href} : {}
 
   const focusRingStyles = {
     boxShadow: focusRing
@@ -49,6 +50,7 @@ export const PagButton = (props: any) => {
       _focus={focusRingStyles}
       size={props.size}
       {...display}
+      {...href}
     >
       {props.children}
     </Button>
