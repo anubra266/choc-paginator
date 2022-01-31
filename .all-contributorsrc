@@ -32,6 +32,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "f-laino",
+      "name": "f-laino",
+      "avatar_url": "https://avatars.githubusercontent.com/u/81749198?v=4",
+      "profile": "https://github.com/f-laino",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
