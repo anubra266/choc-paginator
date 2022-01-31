@@ -28,6 +28,7 @@ export const defaultData = {
   hoverStyles: null, //*
   colorScheme: 'brand', //*
   focusRing: false, //*
+  basePath: null, //*
 };
 
 export type DefaultData = typeof defaultData;
@@ -81,6 +82,7 @@ export interface Pagination {
   setCurrentPage: Dispatch<SetStateAction<Pagination['currentPage']>>;
   setPageSize: Dispatch<SetStateAction<Pagination['pageSize']>>;
   focusRing: boolean | string;
+  basePath: string | null;
 }
 
 const PaginationContext = React.createContext({} as Pagination);

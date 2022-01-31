@@ -11,6 +11,7 @@ describe('it', () => {
         total={500}
         paginationProps={{ display: 'flex' }}
         pageNeighbours={2}
+        basePath="https://carplanner.com/?pagina="
       />,
       div
     );
