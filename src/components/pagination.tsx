@@ -37,21 +37,30 @@ export const PaginationComp = () => {
     props.onChange(currentPage, totalPages, props.pageSize, props.total);
   };
 
-  const fastBackward = () => {
+  const gotoPage = (evt: any, page: number) => {
+    evt.preventDefault()
+    changePage(page);
+  };
+
+  const fastBackward = (evt: any) => {
+    evt.preventDefault()
     const page = props.currentPage - props.pageNeighbours * 2 - 1;
     changePage(page);
   };
 
-  const fastForward = () => {
+  const fastForward = (evt: any) => {
+    evt.preventDefault()
     const page = props.currentPage + props.pageNeighbours * 2 + 1;
     changePage(page);
   };
 
-  const backward = () => {
+  const backward = (evt: any) => {
+    evt.preventDefault()
     changePage(props.currentPage - 1);
   };
 
-  const forward = () => {
+  const forward = (evt: any) => {
+    evt.preventDefault()
     changePage(props.currentPage + 1);
   };
 
@@ -208,7 +217,7 @@ export const PaginationComp = () => {
                 disabled={props.disabled}
                 active={active}
                 key={`page-${index}`}
-                onClick={() => changePage(page)}
+                onClick={(evt: any) => gotoPage(evt, page)}
                 {...hrefLink(page)}
                 size={
                   props.size === 'lg' ? 'md' : props.size === 'xs' ? 'xs' : 'sm'
